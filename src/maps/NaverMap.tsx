@@ -33,22 +33,22 @@ function loadNaverMap() {
     zoom: 16,
   });
 
-  const samplePath = new naver.maps.Polyline({
+  // linting error goes crazy dude.
+  const samplePath: any = new naver.maps.Polyline({
     strokeColor: "#007EEA",
     strokeLineCap: "butt",
     path: IT_PATH,
   });
 
-  var drawingManager; // linting error goes crazy dude.
   naver.maps.Event.once(map, "init", function () {
-    drawingManager = new naver.maps.drawing.DrawingManager({ map: map });
+    const drawingManager = new naver.maps.drawing.DrawingManager({ map: map });
     drawingManager.addDrawing(
       samplePath,
       naver.maps.drawing.DrawingMode.POLYLINE
     );
 
-    drawingManager.addListener("polylineAdded", function (e) {
-      console.log(e);
+    drawingManager.addListener(naver.maps.drawing.DrawingEvents.ADD, function (e) {
+      console.debug(e);
     });
   });
 }
