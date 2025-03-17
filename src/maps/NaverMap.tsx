@@ -39,8 +39,9 @@ function loadNaverMap() {
     path: IT_PATH,
   });
 
+  var drawingManager; // linting error goes crazy dude.
   naver.maps.Event.once(map, "init", function () {
-    const drawingManager = new naver.maps.drawing.DrawingManager({ map: map });
+    drawingManager = new naver.maps.drawing.DrawingManager({ map: map });
     drawingManager.addDrawing(
       samplePath,
       naver.maps.drawing.DrawingMode.POLYLINE
