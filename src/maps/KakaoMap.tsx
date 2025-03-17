@@ -39,6 +39,20 @@ function loadKakaoMap() {
     level: 4,
   });
 
+  // Mapping path
+  let it_path = IT_PATH.map(coord => (new window.kakao.maps.LatLng(coord.y, coord.x)));
+
+  console.debug(it_path)
+
+  new window.kakao.maps.Polyline({
+    map: map,
+    path: it_path,
+    strokeWeight: 2,
+    strokeColor: "#007EEA",
+    strokeOpacity: 1,
+    strokeStyle: "solid",
+  });
+
   var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
   var moveLine: any; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
   var clickLine: any; // 마우스로 클릭한 좌표로 그려질 선 객체입니다
@@ -74,6 +88,8 @@ function loadKakaoMap() {
         strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
         strokeStyle: "solid", // 선의 스타일입니다
       });
+
+      console.debug(clickPosition)
 
       // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
       moveLine = new window.kakao.maps.Polyline({
